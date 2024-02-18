@@ -48,6 +48,8 @@ jobs:
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         export LC_ALL=C
+        export ARCH=arm
+        export CROSS_COMPILE=arm-linux-androideabi-4.9-
         lunch lineage_loganreltexx-eng
         make -j$(nproc --all) recoveryimage
         export PATH=$OLDPATH
