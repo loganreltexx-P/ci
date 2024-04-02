@@ -18,7 +18,7 @@ jobs:
     - name: Installing JDK 7 + Build Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses5 axel python
+        sudo apt-get install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses5 axel python python2
     - name: Install OpenJDK
       uses: actions/setup-java@v3
       with:
@@ -31,6 +31,8 @@ jobs:
         mkdir ~/.bin
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
         python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-16.0
+        sudo ln -sf python2 /usr/bin/python
+        python -V
         git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-9.0.0_r38 /opt/toolchains/arm-eabi
         git clone https://github.com/loganreltexx-P/android_device_samsung_loganreltexx.git -b lineage-16.0 ~/TWRP/device/samsung/loganreltexx
         git clone https://github.com/NotNoelChannel/android_kernel_samsung_msm8930-common-1.git -b lineage-16.0 ~/TWRP/kernel/samsung/msm8930-common
