@@ -31,6 +31,7 @@ jobs:
         mkdir ~/.bin
         curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
         python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-16.0
+        git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-9.0.0_r38 /opt/toolchains/arm-eabi
         git clone https://github.com/loganreltexx-P/android_device_samsung_loganreltexx.git -b lineage-16.0 ~/TWRP/device/samsung/loganreltexx
         git clone https://github.com/NotNoelChannel/android_kernel_samsung_msm8930-common-1.git -b lineage-16.0 ~/TWRP/kernel/samsung/msm8930-common
         git clone https://github.com/loganreltexx-P/proprietary_vendor_samsung_loganreltexx.git -b lineage-16.0 ~/TWRP/vendor/samsung/loganreltexx
@@ -49,7 +50,7 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         export LC_ALL=C
         export ARCH=arm
-        export CROSS_COMPILE=arm-linux-androideabi-4.9-
+        export CROSS_COMPILE=/opt/toolchains/arm-eabi/bin/arm-linux-androideabi-4.9-
         lunch lineage_loganreltexx-eng
         make -j$(nproc --all) recoveryimage
         export PATH=$OLDPATH
